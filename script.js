@@ -72,14 +72,25 @@ leftArrow.addEventListener('click', () => {
         currentIndex--;
         modalslide_image.src = slide_images[currentIndex].src;
         modalslide_image.alt = slide_images[currentIndex].alt;
+        slide_imageList.querySelectorAll('.slide_image').forEach(item => {
+            item.classList.remove('active');
+        });
+    
+        slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
     }
 });
+
 
 rightArrow.addEventListener('click', () => {
     if (currentIndex < slide_images.length - 1) {
         currentIndex++;
         modalslide_image.src = slide_images[currentIndex].src;
         modalslide_image.alt = slide_images[currentIndex].alt;
+        slide_imageList.querySelectorAll('.slide_image').forEach(item => {
+            item.classList.remove('active');
+        });
+    
+        slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
     }
 });
 
