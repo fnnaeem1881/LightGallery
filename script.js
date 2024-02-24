@@ -68,31 +68,58 @@ window.addEventListener('click', (e) => {
 });
 
 leftArrow.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--;
-        modalslide_image.src = slide_images[currentIndex].src;
-        modalslide_image.alt = slide_images[currentIndex].alt;
-        slide_imageList.querySelectorAll('.slide_image').forEach(item => {
-            item.classList.remove('active');
-        });
-    
-        slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
-    }
+    currentIndex = (currentIndex - 1 + slide_images.length) % slide_images.length; // Decrement currentIndex and loop back to the last image if it goes below 0
+    modalslide_image.src = slide_images[currentIndex].src;
+    modalslide_image.alt = slide_images[currentIndex].alt;
+    slide_imageList.querySelectorAll('.slide_image').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
+    slide_imageList.querySelectorAll('.slide_image').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
 });
 
 
 rightArrow.addEventListener('click', () => {
-    if (currentIndex < slide_images.length - 1) {
-        currentIndex++;
-        modalslide_image.src = slide_images[currentIndex].src;
-        modalslide_image.alt = slide_images[currentIndex].alt;
-        slide_imageList.querySelectorAll('.slide_image').forEach(item => {
-            item.classList.remove('active');
-        });
-    
-        slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
-    }
+    currentIndex = (currentIndex + 1) % slide_images.length; // Increment currentIndex and loop back to 0 if it exceeds the length
+    modalslide_image.src = slide_images[currentIndex].src;
+    modalslide_image.alt = slide_images[currentIndex].alt;
+    slide_imageList.querySelectorAll('.slide_image').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
 });
+
+// leftArrow.addEventListener('click', () => {
+//     if (currentIndex > 0) {
+//         currentIndex--;
+//         modalslide_image.src = slide_images[currentIndex].src;
+//         modalslide_image.alt = slide_images[currentIndex].alt;
+//         slide_imageList.querySelectorAll('.slide_image').forEach(item => {
+//             item.classList.remove('active');
+//         });
+    
+//         slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
+//     }
+// });
+
+
+// rightArrow.addEventListener('click', () => {
+//     if (currentIndex < slide_images.length - 1) {
+//         currentIndex++;
+//         modalslide_image.src = slide_images[currentIndex].src;
+//         modalslide_image.alt = slide_images[currentIndex].alt;
+//         slide_imageList.querySelectorAll('.slide_image').forEach(item => {
+//             item.classList.remove('active');
+//         });
+    
+//         slide_imageList.querySelector(`.slide_image:nth-child(${currentIndex + 1})`).classList.add('active');
+//     }
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
