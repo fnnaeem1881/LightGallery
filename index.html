@@ -10,6 +10,50 @@
 </head>
 
 <body>
+    !-- Bell Icon -->
+<div id="bellIcon" style="cursor: pointer; padding: 10px; border: 1px solid #ccc; border-radius: 50%; width: 50px; height: 50px; text-align: center;">
+   asd
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-messaging.js"></script>
+
+<script>
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyAllqyzzbKPLKomEs30Og1mBeEb3Mmu_6g",
+        authDomain: "garibook-c942b.firebaseapp.com",
+        projectId: "garibook-c942b",
+        storageBucket: "garibook-c942b.appspot.com",
+        messagingSenderId: "767308618373",
+        appId: "1:767308618373:web:64e802e89439b59dbda7ec",
+        measurementId: "G-JEZHNG3ZQW"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    const messaging = firebase.messaging();
+
+    // Function to log the device token
+    function logDeviceToken() {
+        messaging.requestPermission()
+        .then(() => messaging.getToken())
+        .then((currentToken) => {
+            if (currentToken) {
+                console.log('Device Token:', currentToken);
+            } else {
+                console.log('No Instance ID token available. Request permission to generate one.');
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+        });
+    }
+
+    // Adding click event listener to the bell icon
+    document.getElementById('bellIcon').addEventListener('click', logDeviceToken);
+</script>
+
     <div class="GalleryImage container">
         <div class="row">
             <div class="fullImageWrap">
